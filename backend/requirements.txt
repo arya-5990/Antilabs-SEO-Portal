@@ -1,0 +1,15 @@
+fastapi
+uvicorn
+pydantic
+beautifulsoup4
+requests
+google-genai
+python-dotenv
+lxml
+slowapi
+httpx
+crawl4ai
+camoufox[geoip]
+cachetools
+sqlalchemy
+psycopg2-binary

@@ -1,0 +1,198 @@
+@import "tailwindcss";
+@config "../../tailwind.config.ts";
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Force dark theme permanently across the app */
+  html, body {
+    @apply font-sans transition-colors duration-500 overflow-x-hidden;
+    font-feature-settings: "cv02","cv03","cv04","cv11";
+   background-color: #fafafa;
+color: #0f172a;
+  }
+
+  ::selection {
+    background: rgba(0, 242, 254, 0.25);
+    color: #fff;
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@layer utilities {
+  /* ─── Glass system ───────────────────────── */
+  .glass-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 20px 60px rgba(15,23,42,.08);
+  transition: all .3s;
+}
+
+  .glass-panel {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+  @apply transition-all duration-300;
+}
+  /* ─── Hover cards ────────────────────────── */
+  .card-hover {
+    @apply transition-all duration-300 cursor-pointer;
+  }
+  .card-hover:hover {
+  transform: translateY(-3px);
+  border-color: #7dd3fc;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
+}
+
+  /* ─── Inputs ─────────────────────────────── */
+ .input-base {
+  @apply w-full rounded-xl text-sm font-medium px-5 py-4 transition-all duration-200 outline-none;
+
+  background: #f8fafc;
+  border: 1px solid #d1d5db;
+  color: #0f172a;
+}
+
+.input-base::placeholder {
+  color: #94a3b8;
+}
+
+.input-base:focus {
+  border-color: #12bafc;
+  box-shadow: 0 0 0 4px rgba(18,186,252,.12);
+}
+  .input-base.error {
+    @apply border-red-400/70 focus:border-red-500 focus:ring-red-500/10;
+  }
+
+  /* ─── Buttons ────────────────────────────── */
+  .btn-primary {
+  @apply relative overflow-hidden px-7 py-4 rounded-md font-semibold text-sm text-white;
+  background: #12bafc;
+  transition: all 0.2s ease;
+  box-shadow: 0 8px 24px rgba(18, 186, 252, 0.25);
+}
+  .btn-primary:hover {
+  background: #0ea5e9;
+  transform: translateY(-1px);
+}
+  .btn-primary:disabled {
+    @apply opacity-50 cursor-not-allowed;
+    transform: none;
+  }
+
+  .btn-ghost {
+  @apply px-6 py-3 rounded-lg text-sm font-semibold;
+
+  background: white;
+  border: 1px solid #d1d5db;
+  color: #334155;
+  transition: .2s;
+}
+
+.btn-ghost:hover {
+  background: #f8fafc;
+}
+  /* ─── Status badges ──────────────────────── */
+  .badge-pending {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold;
+    @apply bg-amber-500/10 text-amber-400 border border-amber-500/20;
+  }
+  .badge-approved {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold;
+    @apply bg-emerald-500/10 text-emerald-400 border border-emerald-500/20;
+  }
+  .badge-rejected {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold;
+    @apply bg-rose-500/10 text-rose-400 border border-rose-500/20;
+  }
+
+  /* ─── Skeleton loader ────────────────────── */
+  .skeleton {
+  background: linear-gradient(
+    90deg,
+    #f1f5f9 25%,
+    #e2e8f0 50%,
+    #f1f5f9 75%
+  );
+    background-size: 200% 100%;
+    animation: shimmer 1.8s linear infinite;
+    @apply rounded-lg;
+  }
+
+  /* ─── Text effects ───────────────────────── */
+  .text-gradient-dark {
+  background: linear-gradient(135deg, #0f172a 0%, #475569 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .text-gradient-dark {
+    background: linear-gradient(135deg, #f1f5f9 0%, #94a3b8 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .text-gradient-hero {
+  background: linear-gradient(135deg, #0f172a 0%, #334155 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-glow {
+  text-shadow: none;
+}
+
+  /* ─── Background effects ─────────────────── */
+ .bg-grid-pattern {
+  background-size: 48px 48px;
+  background-image:
+    linear-gradient(to right,#e5e7eb 1px,transparent 1px),
+    linear-gradient(to bottom,#e5e7eb 1px,transparent 1px);
+}
+
+  /* ─── Divider line ───────────────────────── */
+  .divider {
+  @apply border-slate-200;
+}
+
+  /* ─── Active nav pill ────────────────────── */
+  .nav-active-glow {
+    box-shadow: 0 0 20px rgba(0, 242, 254, 0.15);
+  }
+}
+
+/* ─── Scrollbar ──────────────────────────────── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+  transition: background 0.2s;
+}
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+/* ─── Animations ──────────────────────────────── */
+@keyframes float-orb-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(5%, 5%) scale(1.1); }
+  66% { transform: translate(-5%, 8%) scale(0.9); }
+}
+
+@keyframes float-orb-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(-8%, -5%) scale(0.9); }
+  66% { transform: translate(4%, -10%) scale(1.05); }
+}
+
+.animate-float-orb-1 { animation: float-orb-1 15s ease-in-out infinite; }
+.animate-float-orb-2 { animation: float-orb-2 18s ease-in-out infinite reverse; }
+
